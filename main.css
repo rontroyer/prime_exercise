@@ -63,3 +63,30 @@ input[type="submit"] {
 	margin: 1em 0;
 	cursor: pointer;
 }
+
+.head, .content {
+    display: block;
+    margin: 0 auto;
+    width: 780px;
+}
+
+.head {
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.section {
+    display: inline-block;
+    border: 5px solid #ccc;
+    background: #fff;
+    padding: 15px;
+    float: left;
+    height:340px;
+    max-width: 440px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.section:first-child {
+	margin-right: 10px;
+}
