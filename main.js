@@ -4,8 +4,8 @@ app = {
 		$('#rangeForm').submit(function(e) {
 			e.preventDefault();
 			/* quick error checking (also, this has to be == and not === otherwise it won't work */
-			low = parseFloat($('#low_range').val().trim());
-			high = parseFloat($('#high_range').val().trim());
+			var low = parseFloat($('#low_range').val().trim());
+			var high = parseFloat($('#high_range').val().trim());
 			if (
 				($('#low_range').val().trim() == low) && 
 				($('#high_range').val().trim() == high)
@@ -21,16 +21,19 @@ app = {
 	generatePrimes : function(low_range,high_range) {
 		$('#output').html('');
 		/* Make sure they didn't transpose their high and low values */
-		low = Math.min(low_range,high_range); 
-		high = Math.max(low_range,high_range);
+		var low = Math.min(low_range,high_range); 
+		var high = Math.max(low_range,high_range);
 		/* Check the range they input */
-		s='';
+		var s='';
+		var c=0; /* count of prime numbers we've found in the range */
 		for (i=low;i<=high;i++) {
 			if (app.isPrime(i)) {
 				s += i+', ';
+				c++;
 			} 
 		}
 		s=s.replace(/, $/,''); /*remove the last comma*/
+		s+='<div id="summary">'+c+' prime numbers found</div>';
 		$('#output').html(s);
 	},
 	isPrime : function(num) {

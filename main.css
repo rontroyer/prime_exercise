@@ -90,3 +90,21 @@ input[type="submit"] {
 .section:first-child {
 	margin-right: 10px;
 }
+
+#output {
+	position: relative;
+	min-width:200px;
+	padding-top:40px; /* 15 + 25 */
+	height:315px; /* 340 - 25 */
+}
+
+#summary {
+	position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 3px;
+    text-align: center;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
