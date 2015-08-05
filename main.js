@@ -4,12 +4,20 @@ app = {
 		$('#rangeForm').submit(function(e) {
 			e.preventDefault();
 			/* quick error checking (also, this has to be == and not === otherwise it won't work */
-			var low = parseFloat($('#low_range').val().trim());
-			var high = parseFloat($('#high_range').val().trim());
+			var low_val = parseFloat($('#low_range').val().trim());
+			var high_val = parseFloat($('#high_range').val().trim());
 			if (
-				($('#low_range').val().trim() == low) && 
-				($('#high_range').val().trim() == high)
+				($('#low_range').val().trim() == low_val) && 
+				($('#high_range').val().trim() == high_val)
 			   ) {
+			   	/* Make sure they didn't transpose their high and low values */
+				low = Math.max(Math.min(low_val,high_val),1);
+				high = Math.max(low_val,high_val);
+				
+				/* overwrite their values in case they transposed */	
+				$('#low_range').val(low);
+				$('#high_range').val(high);
+
 				app.generatePrimes(low,high);
 			} else {
 				alert("It seemss you've had an error inputting a number. Please check your values. "+low+','+high);
@@ -20,13 +28,10 @@ app = {
 	},
 	generatePrimes : function(low_range,high_range) {
 		$('#output').html('');
-		/* Make sure they didn't transpose their high and low values */
-		var low = Math.min(low_range,high_range); 
-		var high = Math.max(low_range,high_range);
 		/* Check the range they input */
 		var s='';
 		var c=0; /* count of prime numbers we've found in the range */
-		for (i=low;i<=high;i++) {
+		for (i=low_range;i<=high_range;i++) {
 			if (app.isPrime(i)) {
 				s += i+', ';
 				c++;
