@@ -1,0 +1,65 @@
+html, body {	
+	background: #E2E2E2;
+	
+	margin:0;
+	padding:0;
+
+	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	line-height: 1;
+	color:#333;
+
+	-webkit-font-smoothing: antialiased;
+}
+
+input, textarea {font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;}
+
+.cb {clear:both;} .cl {clear:left;} .cr {clear:right;} .fl {float:left;} .fr {float:right;}
+.tc {text-align: center;} .tr {text-align: right;}
+
+
+h1,h2,h3 {margin: 0;}
+h1 {
+	font-size: 2.5em;
+	letter-spacing: -2px;
+}
+h2 {
+	display: inline-block;
+	letter-spacing: -.05em;
+	font-size: 1.2em;
+    margin-bottom: 1em;
+    font-weight: normal;
+    font-family: "Times", "Times New Roman", Times, serif;
+}
+h3 {
+	font-size:1.3em;
+	color:#666;
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+input[type="submit"], input[type="text"] {
+	border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+
+input[type="text"], input[type="number"] {
+    display: block;
+    margin: 4px 0 12px 0;
+    padding: 3px;
+}
+
+input[type="submit"] {
+	background: #eee;
+	padding: 5px 16px;
+	margin: 1em 0;
+	cursor: pointer;
+}
