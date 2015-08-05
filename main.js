@@ -11,14 +11,14 @@ app = {
 				($('#high_range').val().trim() == high_val)
 			   ) {
 			   	/* Make sure they didn't transpose their high and low values */
-				low = Math.max(Math.min(low_val,high_val),1);
+				low = Math.max(Math.min(low_val,high_val),2);
 				high = Math.max(low_val,high_val);
-				
+
 				/* overwrite their values in case they transposed */	
 				$('#low_range').val(low);
 				$('#high_range').val(high);
 
-				app.generatePrimes(low,high);
+				app.outputPrimes(app.generatePrimes(low,high));
 			} else {
 				alert("It seemss you've had an error inputting a number. Please check your values. "+low+','+high);
 			}
@@ -27,27 +27,38 @@ app = {
 		$('#rangeForm').submit();
 	},
 	generatePrimes : function(low_range,high_range) {
-		$('#output').html('');
-		/* Check the range they input */
-		var s='';
-		var c=0; /* count of prime numbers we've found in the range */
-		for (i=low_range;i<=high_range;i++) {
-			if (app.isPrime(i)) {
-				s += i+', ';
-				c++;
-			} 
+		/* Rewriting to seive it out, this performs better in large numbers that I've tested */
+		var possibleNums = [], primes = [];
+		cap = Math.sqrt(high_range);
+
+		/* Create the initial array */
+		for (i=0;i<high_range;i++) {
+			possibleNums.push(true); /* Temporarily set all values to true (they're possible primes) */
 		}
-		s=s.replace(/, $/,''); /*remove the last comma*/
-		s+='<div id="summary">'+c+' prime numbers found</div>';
-		$('#output').html(s);
-	},
-	isPrime : function(num) {
-		for (ip=2;ip<=Math.sqrt(num);ip++) { /* Interesting thought was that we only ever need to check up to the square root of the number we're checking */
-			if (num % ip == 0) {
-				return false;
+
+		for (i=2;i<=cap;i++) { /* Now to remove multiples of all the loop */
+			if (possibleNums[i]) { /* If this item exists, then do the loop for multiples of it. */
+				for (ii = i*i; ii < high_range; ii+=i) { /* starting with the first multiple of the number we're checking, then jump up each time by the multiple value */
+					possibleNums[ii] = false; /* this isn't a prime number */
+				}
 			}
 		}
-		return true;
+
+		for (i=2; i<high_range; i++) { /* Loop for output */
+			if (possibleNums[i]) { /* if this is still true, it's prime */
+				primes.push(i);
+			}
+		}
+
+		primes = primes.filter(function(num) {
+    		return num >= low_range && num <= high_range;
+		});
+
+		return primes;
+	},
+
+	outputPrimes : function (primes) {
+		$('#output').html('<span class="primes">'+primes.join(', ')+'</span><div id="summary">'+primes.length+' prime numbers found</div>')
 	}
 }
 
