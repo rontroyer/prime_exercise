@@ -12,7 +12,7 @@ app = {
 			   ) {
 			   	/* Make sure they didn't transpose their high and low values */
 				low = Math.max(Math.min(low_val,high_val),2);
-				high = Math.max(low_val,high_val);
+				high = Math.max(Math.max(low_val,high_val),2);
 
 				/* overwrite their values in case they transposed */	
 				$('#low_range').val(low);
