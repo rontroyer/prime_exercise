@@ -15,6 +15,8 @@ app = {
 				alert("It seemss you've had an error inputting a number. Please check your values. "+low+','+high);
 			}
 		});
+
+		$('#rangeForm').submit();
 	},
 	generatePrimes : function(low_range,high_range) {
 		$('#output').html('');
